@@ -1,0 +1,210 @@
+/* === 全局設定：定義顏色變數 === */
+:root {
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --primary: #6c5ce7;
+    --accent: #fdcb6e;
+    --text-dark: #2d3436;
+    --text-light: #636e72;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    --radius: 20px;
+}
+
+body {
+    font-family: 'Noto Sans TC', "Microsoft JhengHei", sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow-x: hidden; /* 防止背景動畫跑版 */
+    position: relative;
+}
+
+/* 背景漂浮球動畫 (讓畫面活起來) */
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: float 10s infinite ease-in-out;
+}
+.c1 { width: 300px; height: 300px; background: #00cec9; top: -50px; left: -50px; }
+.c2 { width: 400px; height: 400px; background: #e84393; bottom: -100px; right: -100px; animation-delay: 5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(20px); }
+}
+
+/* === 主容器：玻璃擬態卡片 === */
+.container {
+    width: 90%;
+    max-width: 500px;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    position: relative;
+    backdrop-filter: blur(10px); /* 磨砂玻璃效果 */
+    animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popUp {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+header .logo { font-size: 3rem; margin-bottom: 10px; }
+header h1 { margin: 0; color: var(--primary); font-size: 1.8rem; }
+header p { margin: 5px 0 20px; color: var(--text-light); font-size: 0.9rem; }
+
+/* === 隱藏工具 === */
+.hidden { display: none !important; }
+
+/* === 輸入框與下拉選單美化 === */
+.input-group { text-align: left; margin-bottom: 15px; }
+.input-group label { display: block; font-weight: bold; color: var(--text-dark); margin-bottom: 5px; font-size: 0.9rem; }
+
+.select-wrapper { position: relative; }
+.select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary);
+    pointer-events: none;
+}
+
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #dfe6e9;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    appearance: none; /* 移除預設醜醜的箭頭 */
+    background: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+select:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2); }
+
+/* === 按鈕設計 === */
+.main-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s;
+    box-shadow: 0 4px 0 #5043b3; /* 3D 按鈕底座 */
+}
+.main-btn:active { transform: translateY(4px); box-shadow: none; }
+
+.sub-btn {
+    background: #dfe6e9;
+    color: var(--text-light);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* === 九宮格選單 === */
+.section-title { color: var(--text-dark); margin-bottom: 20px; }
+.grid-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 兩欄 */
+    gap: 15px;
+}
+
+.menu-btn {
+    background: white;
+    border: 2px solid #f1f2f6;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.menu-btn:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.menu-btn .icon { font-size: 2rem; margin-bottom: 5px; }
+.menu-btn .text { font-weight: bold; color: var(--text-dark); }
+
+/* 為不同科目加一點點微顏色 (選做) */
+.b-chinese:hover { background: #ffeaa7; }
+.b-math:hover { background: #81ecec; }
+.b-nature:hover { background: #55efc4; }
+
+/* === 遊戲介面 === */
+.hud {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.hud-item {
+    background: #f1f2f6;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+.score-tag { color: #d63031; background: #fab1a0; }
+
+.game-card {
+    text-align: left;
+}
+#question-text {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    border-left: 5px solid var(--primary);
+    padding-left: 15px;
+}
+
+.options-grid button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 2px solid #dfe6e9;
+    background: white;
+    border-radius: 10px;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.options-grid button:hover { background: #f1f2f6; border-color: var(--primary); }
+
+/* 正確錯誤樣式 */
+.options-grid button.correct { background: #00b894; color: white; border-color: #00b894; }
+.options-grid button.wrong { background: #d63031; color: white; border-color: #d63031; }
+
+.feedback-box {
+    margin: 15px 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    animation: popUp 0.3s;
+}
+.feedback-box.correct { color: #00b894; }
+.feedback-box.wrong { color: #d63031; }
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}

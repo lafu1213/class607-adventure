@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北辰 607 知識冒險世界</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-circle c1"></div>
+    <div class="bg-circle c2"></div>
+
+    <div class="container fade-in">
+        <header>
+            <div class="logo">🚀</div>
+            <h1>北辰 607 知識冒險世界</h1>
+            <p>烈甫老師的試煉場</p>
+        </header>
+
+        <div id="login-screen" class="screen">
+            <div class="login-card">
+                <h2>🎓 勇者登入</h2>
+                <div class="input-group">
+                    <label>班級 Class</label>
+                    <div class="select-wrapper">
+                        <select id="class-select">
+                            <option value="六年1班">六年 1 班</option>
+                            <option value="六年2班">六年 2 班</option>
+                            <option value="六年3班">六年 3 班</option>
+                            <option value="六年4班">六年 4 班</option>
+                            <option value="六年5班">六年 5 班</option>
+                            <option value="六年6班">六年 6 班</option>
+                            <option value="六年7班">六年 7 班</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>座號 Number</label>
+                    <div class="select-wrapper">
+                        <select id="seat-select">
+                            <option value="01">01 號</option><option value="02">02 號</option><option value="03">03 號</option><option value="04">04 號</option><option value="05">05 號</option><option value="06">06 號</option><option value="07">07 號</option><option value="08">08 號</option><option value="09">09 號</option><option value="10">10 號</option><option value="11">11 號</option><option value="12">12 號</option><option value="13">13 號</option><option value="14">14 號</option><option value="15">15 號</option><option value="16">16 號</option><option value="17">17 號</option><option value="18">18 號</option><option value="19">19 號</option><option value="20">20 號</option><option value="21">21 號</option><option value="22">22 號</option><option value="23">23 號</option><option value="24">24 號</option><option value="25">25 號</option><option value="26">26 號</option><option value="27">27 號</option><option value="28">28 號</option><option value="29">29 號</option><option value="30">30 號</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="main-btn" onclick="login()">開始冒險 Start Game ⚔️</button>
+            </div>
+        </div>
+
+        <div id="menu-screen" class="screen hidden">
+            <h2 class="section-title">✨ 選擇傳送門</h2>
+            <div class="grid-menu">
+                <button class="menu-btn b-chinese" onclick="startGame('chinese')">
+                    <span class="icon">🐉</span>
+                    <span class="text">國語文</span>
+                </button>
+                <button class="menu-btn b-math" onclick="startGame('math')">
+                    <span class="icon">🧮</span>
+                    <span class="text">數學</span>
+                </button>
+                <button class="menu-btn b-nature" onclick="startGame('nature')">
+                    <span class="icon">🌿</span>
+                    <span class="text">自然</span>
+                </button>
+                <button class="menu-btn b-social" onclick="startGame('social')">
+                    <span class="icon">🏘️</span>
+                    <span class="text">社會</span>
+                </button>
+                <button class="menu-btn b-english" onclick="startGame('english')">
+                    <span class="icon">🔤</span>
+                    <span class="text">英語</span>
+                </button>
+                <button class="menu-btn b-eng1200" onclick="startGame('eng1200')">
+                    <span class="icon">🔥</span>
+                    <span class="text">英單1200</span>
+                </button>
+                <button class="menu-btn b-tang" onclick="startGame('tang')">
+                    <span class="icon">📜</span>
+                    <span class="text">唐詩</span>
+                </button>
+                <button class="menu-btn b-king" onclick="startGame('lang_king')">
+                    <span class="icon">👑</span>
+                    <span class="text">知識王</span>
+                </button>
+                <button class="menu-btn b-geo" onclick="startGame('geo_king')">
+                    <span class="icon">🗺️</span>
+                    <span class="text">地理王</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen hidden">
+            <div class="hud">
+                <div class="hud-item subject-tag" id="subject-title">科目</div>
+                <div class="hud-item score-tag">🏆 <span id="score">0</span></div>
+            </div>
+            
+            <div class="card game-card">
+                <h3 id="question-text">題目載入中...</h3>
+                <div id="options-container" class="options-grid">
+                    </div>
+            </div>
+
+            <div id="feedback" class="feedback-box hidden"></div>
+            
+            <div class="action-bar">
+                <button class="sub-btn" onclick="showMenu()">🏳️ 撤退</button>
+                <button id="next-btn" class="main-btn hidden" onclick="nextQuestion()">下一關 ➡️</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
