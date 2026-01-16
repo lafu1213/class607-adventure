@@ -1,7 +1,12 @@
 // ==========================================
-//  1. 設定區 (⚠️ 這裡記得換回您的 Google 網址！)
+//  0. 測試區 (確認程式有跑)
 // ==========================================
-// 請把雙引號中間換成您在 Apps Script 部署拿到的那串網址
+console.log("Game.js 載入成功！");
+
+// ==========================================
+//  1. 設定區
+// ==========================================
+// 這是您貼給我的正確網址，我已經幫您填好了
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxy2_inueBSmZpQsuUQ32DYe3VnCuDqr3B9mba0wVHISTm4fP-4sztmslYaP35eyRnUwA/exec"; 
 
 // ==========================================
@@ -37,7 +42,69 @@ const questionBank = {
     eng1200: [],
     tang: [],
     lang_king: [],
-    geo_king: []
+    geo_king: [],
+
+    // === 知識王挑戰賽專區 ===
+    king_geo: [
+        { q: "被稱為「千湖之國」的是哪一個國家？", options: ["加拿大", "芬蘭", "瑞士", "紐西蘭"], ans: 1 },
+        { q: "世界上海拔最高的山峰是哪一座？", options: ["喬戈里峰", "聖母峰", "干城章嘉峰", "洛子峰"], ans: 1 },
+        { q: "台灣最長的河流是哪一條？", options: ["濁水溪", "高屏溪", "淡水河", "大甲溪"], ans: 0 },
+        { q: "下列哪一個城市位於南半球？", options: ["東京", "紐約", "雪梨", "巴黎"], ans: 2 },
+        { q: "「極光」主要發生在地球大氣層的哪一層？", options: ["對流層", "平流層", "熱層", "中氣層"], ans: 2 },
+        { q: "世界上最大的沙漠是？", options: ["撒哈拉沙漠", "戈壁沙漠", "南極沙漠", "阿拉伯沙漠"], ans: 2 },
+        { q: "台灣本島最南端的岬角是？", options: ["富貴角", "三貂角", "鵝鑾鼻", "貓鼻頭"], ans: 2 },
+        { q: "下列哪一個國家不屬於「歐盟」成員國？", options: ["德國", "法國", "英國", "義大利"], ans: 2 },
+        { q: "亞馬遜雨林橫跨的國家中，佔地面積最大的是？", options: ["秘魯", "哥倫比亞", "巴西", "委內瑞拉"], ans: 2 },
+        { q: "日本的最高峰「富士山」橫跨哪兩個縣？", options: ["東京都與神奈川縣", "靜岡縣與山梨縣", "長野縣與岐阜縣", "京都府與大阪府"], ans: 1 }
+    ],
+    king_hist: [
+        { q: "中國歷史上唯一的女皇帝是誰？", options: ["慈禧太后", "呂后", "武則天", "蕭皇后"], ans: 2 },
+        { q: "文藝復興運動發源於哪個國家？", options: ["英國", "法國", "義大利", "希臘"], ans: 2 },
+        { q: "台灣第一位民選總統是誰？", options: ["蔣經國", "李登輝", "陳水扁", "馬英九"], ans: 1 },
+        { q: "古埃及人建造金字塔的主要用途是？", options: ["神廟", "陵墓", "糧倉", "觀測臺"], ans: 1 },
+        { q: "三國演義中，「過五關斬六將」的是哪位人物？", options: ["趙雲", "張飛", "關羽", "馬超"], ans: 2 },
+        { q: "奧運會起源於哪一個古文明？", options: ["古羅馬", "古埃及", "古希臘", "古巴比倫"], ans: 2 },
+        { q: "「安史之亂」發生在中國哪一個朝代？", options: ["漢朝", "唐朝", "宋朝", "明朝"], ans: 1 },
+        { q: "美國獨立宣言是在哪一年簽署的？", options: ["1776年", "1789年", "1865年", "1901年"], ans: 0 },
+        { q: "著名的建築「泰姬瑪哈陵」位於哪個國家？", options: ["泰國", "印尼", "印度", "土耳其"], ans: 2 },
+        { q: "台灣原住民中，以「飛魚祭」聞名的是哪一族？", options: ["阿美族", "排灣族", "達悟族", "泰雅族"], ans: 2 }
+    ],
+    king_sci: [
+        { q: "人體最大的器官是什麼？", options: ["肝臟", "腦", "皮膚", "肺"], ans: 2 },
+        { q: "水的化學式是？", options: ["HO2", "H2O", "CO2", "H2O2"], ans: 1 },
+        { q: "太陽系中，體積最大的行星是？", options: ["地球", "土星", "木星", "天王星"], ans: 2 },
+        { q: "光在真空中的速度大約是每秒多少公里？", options: ["3萬", "30萬", "300萬", "3000萬"], ans: 1 },
+        { q: "下列哪種動物不是哺乳類？", options: ["鯨魚", "蝙蝠", "企鵝", "海豚"], ans: 2 },
+        { q: "元素週期表中，符號「Au」代表什麼元素？", options: ["銀", "銅", "金", "鋁"], ans: 2 },
+        { q: "負責輸送人體血液離開心臟的血管稱為？", options: ["動脈", "靜脈", "微血管", "淋巴管"], ans: 0 },
+        { q: "地球自轉一圈大約需要多久？", options: ["一個月", "一年", "24小時", "12小時"], ans: 2 },
+        { q: "電腦運算的基本單位是？", options: ["Pixel", "Bit", "Volt", "Gram"], ans: 1 },
+        { q: "下列哪一種氣體是導致溫室效應的主要氣體？", options: ["氧氣", "氮氣", "二氧化碳", "氫氣"], ans: 2 }
+    ],
+    king_life: [
+        { q: "一般成人共有多少顆恆齒（包含智齒）？", options: ["28顆", "30顆", "32顆", "34顆"], ans: 2 },
+        { q: "奧林匹克運動會的五環標誌中，不包含下列哪種顏色？", options: ["黃色", "黑色", "紫色", "綠色"], ans: 2 },
+        { q: "標準鋼琴共有幾個琴鍵？", options: ["66鍵", "88鍵", "92鍵", "100鍵"], ans: 1 },
+        { q: "在交通號誌中，倒三角形的標誌通常代表什麼意思？", options: ["禁止通行", "讓路", "停車再開", "此路不通"], ans: 1 },
+        { q: "撲克牌中，唯一的「側面像」國王（King）是哪種花色？", options: ["黑桃", "紅心", "方塊", "梅花"], ans: 2 },
+        { q: "網球比賽中，一局若比分為「40-40」，術語稱為什麼？", options: ["Love", "Deuce", "Ace", "Match Point"], ans: 1 },
+        { q: "下列哪一種食物富含維生素C？", options: ["牛肉", "奇異果", "白飯", "豆腐"], ans: 1 },
+        { q: "手機通訊技術「5G」的「G」代表什麼意思？", options: ["Global", "Generation", "Gigabit", "Grade"], ans: 1 },
+        { q: "國際求救訊號「SOS」的摩斯密碼組合是？", options: ["三短三長三短", "三長三短三長", "一長一短", "兩短兩長"], ans: 0 },
+        { q: "一般情況下，護照的有效期通常為幾年？", options: ["3年", "5年", "10年", "20年"], ans: 2 }
+    ],
+    king_art: [
+        { q: "名畫《蒙娜麗莎》的作者是誰？", options: ["梵谷", "畢卡索", "達文西", "米開朗基羅"], ans: 2 },
+        { q: "「哈利波特」系列的作者是？", options: ["J.K.羅琳", "托爾金", "史蒂芬·金", "喬治·R·R·馬丁"], ans: 0 },
+        { q: "中國古代四大名著不包含下列哪一部？", options: ["西遊記", "水滸傳", "金瓶梅", "紅樓夢"], ans: 2 },
+        { q: "成語「囫圇吞棗」中的「囫圇」是什麼意思？", options: ["快速", "完整", "飢餓", "混亂"], ans: 1 },
+        { q: "著名雕像「大衛像」是誰的作品？", options: ["羅丹", "達文西", "米開朗基羅", "拉斐爾"], ans: 2 },
+        { q: "「To be, or not to be」是莎士比亞哪部戲劇的名句？", options: ["羅密歐與茱麗葉", "哈姆雷特", "馬克白", "李爾王"], ans: 1 },
+        { q: "被稱為「音樂神童」的作曲家是？", options: ["貝多芬", "巴哈", "莫札特", "蕭邦"], ans: 2 },
+        { q: "諾貝爾文學獎得主莫言是哪國人？", options: ["日本", "中國", "韓國", "新加坡"], ans: 1 },
+        { q: "電影《魔戒》三部曲的導演是？", options: ["史蒂芬史匹柏", "詹姆斯卡麥隆", "彼得傑克森", "克里斯多福諾蘭"], ans: 2 },
+        { q: "成語「罄竹難書」原本是用來形容？", options: ["功德無量", "罪惡極多", "文章優美", "書法草率"], ans: 1 }
+    ]
 };
 
 // ==========================================
@@ -48,13 +115,14 @@ let studentInfo = { className: "", seatNo: "" };
 let currentSubject = '';
 let currentQuestionIndex = 0;
 let score = 0;
+// 🎲 變數：用來存當下這場遊戲被洗亂後的題目
+let currentSessionQuestions = []; 
 
-// --- 登入功能 (修正回來了！) ---
+// --- 登入功能 ---
 function login() {
     const classVal = document.getElementById('class-select').value;
     const seatVal = document.getElementById('seat-select').value;
     
-    // 檢查是否選擇
     if (!classVal || !seatVal) {
         alert("請確認班級和座號都有選擇喔！");
         return;
@@ -63,9 +131,32 @@ function login() {
     studentInfo.className = classVal;
     studentInfo.seatNo = seatVal;
 
-    // 畫面切換：隱藏登入，顯示選單
+    // 隱藏登入頁，顯示主選單
     document.getElementById('login-screen').classList.add('hidden');
     document.getElementById('menu-screen').classList.remove('hidden');
+}
+
+// --- 切換到知識王選單 ---
+function showKingMenu() {
+    document.getElementById('menu-screen').classList.add('hidden');
+    document.getElementById('king-menu-screen').classList.remove('hidden');
+}
+
+// --- 從知識王選單返回大廳 ---
+function showMenuFromKing() {
+    document.getElementById('king-menu-screen').classList.add('hidden');
+    document.getElementById('menu-screen').classList.remove('hidden');
+}
+
+// --- 🎲 洗牌演算法 ---
+function shuffleArray(array) {
+    if (!array) return [];
+    let newArray = [...array]; 
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
 }
 
 // --- 啟動遊戲 ---
@@ -74,14 +165,20 @@ function startGame(subject) {
     currentQuestionIndex = 0;
     score = 0;
     
-    // 檢查該科目是否有題目
+    // 檢查題目
     if (!questionBank[subject] || questionBank[subject].length === 0) {
         alert("🚧 老師還在努力出題中，請稍後再來！");
         return;
     }
 
+    // 洗牌
+    currentSessionQuestions = shuffleArray(questionBank[subject]);
+
+    // 切換畫面
     document.getElementById('menu-screen').classList.add('hidden');
+    document.getElementById('king-menu-screen').classList.add('hidden');
     document.getElementById('game-screen').classList.remove('hidden');
+    
     document.getElementById('subject-title').innerText = getSubjectName(subject);
     document.getElementById('score').innerText = score;
     
@@ -90,15 +187,15 @@ function startGame(subject) {
 
 // --- 載入題目 ---
 function loadQuestion() {
-    const data = questionBank[currentSubject][currentQuestionIndex];
+    const data = currentSessionQuestions[currentQuestionIndex];
+    
     document.getElementById('question-text').innerText = `Q${currentQuestionIndex + 1}: ${data.q}`;
     
     const optionsDiv = document.getElementById('options-container');
-    optionsDiv.innerHTML = ''; // 清空舊選項
+    optionsDiv.innerHTML = ''; 
     document.getElementById('feedback').classList.add('hidden');
     document.getElementById('next-btn').classList.add('hidden');
 
-    // 產生選項按鈕
     data.options.forEach((opt, index) => {
         const btn = document.createElement('button');
         btn.innerText = opt;
@@ -109,11 +206,10 @@ function loadQuestion() {
 
 // --- 檢查答案 ---
 function checkAnswer(selectedIndex, btnElement) {
-    const data = questionBank[currentSubject][currentQuestionIndex];
+    const data = currentSessionQuestions[currentQuestionIndex];
     const correctIndex = data.ans;
     const feedbackBox = document.getElementById('feedback');
 
-    // 鎖定所有按鈕不能再按
     const allBtns = document.querySelectorAll('#options-container button');
     allBtns.forEach(btn => btn.disabled = true);
 
@@ -124,7 +220,7 @@ function checkAnswer(selectedIndex, btnElement) {
         score += 10;
     } else {
         btnElement.classList.add('wrong');
-        allBtns[correctIndex].classList.add('correct'); // 顯示正確答案
+        allBtns[correctIndex].classList.add('correct'); 
         feedbackBox.innerText = "😅 哎呀！正確答案是: " + data.options[correctIndex];
         feedbackBox.className = "feedback-box wrong";
     }
@@ -134,18 +230,17 @@ function checkAnswer(selectedIndex, btnElement) {
     document.getElementById('next-btn').classList.remove('hidden');
 }
 
-// --- 下一題 (包含結束時傳送成績) ---
+// --- 下一題 ---
 function nextQuestion() {
     currentQuestionIndex++;
-    if (currentQuestionIndex < questionBank[currentSubject].length) {
+    if (currentQuestionIndex < currentSessionQuestions.length) {
         loadQuestion();
     } else {
-        // 題目做完，傳送成績
         sendScoreToGoogleSheet();
     }
 }
 
-// --- 傳送成績到 Google Sheet ---
+// --- 傳送成績 ---
 function sendScoreToGoogleSheet() {
     alert(`🏆 恭喜完成！你的得分是：${score} 分\n正在上傳成績...`);
 
@@ -170,18 +265,21 @@ function sendScoreToGoogleSheet() {
     });
 }
 
-// --- 返回主選單 ---
+// --- 返回選單 ---
 function showMenu() {
     document.getElementById('game-screen').classList.add('hidden');
+    document.getElementById('king-menu-screen').classList.add('hidden');
     document.getElementById('menu-screen').classList.remove('hidden');
 }
 
-// --- 輔助：取得中文科目名稱 ---
+// --- 輔助：取得中文科目名稱 (這裡就是之前斷掉的地方！現在補好了) ---
 function getSubjectName(key) {
     const map = {
         chinese: '國語', math: '數學', nature: '自然', social: '社會',
         english: '英語', eng1200: '英語1200', tang: '唐詩', 
-        lang_king: '語文知識王', geo_king: '地理王'
+        lang_king: '語文知識王', geo_king: '地理王',
+        king_geo: '知識王-地理', king_hist: '知識王-歷史', 
+        king_sci: '知識王-自然', king_life: '知識王-常識', king_art: '知識王-藝文'
     };
     return map[key] || key;
 }

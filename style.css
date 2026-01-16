@@ -208,3 +208,51 @@ select:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3p
     align-items: center;
     margin-top: 20px;
 }
+/* =========================================
+   知識王挑戰賽專屬風格 (五色戰隊)
+   ========================================= */
+
+/* 1. 地理與環境：森林綠 (代表大地) */
+.k-geo { border-color: #2ecc71; color: #27ae60; }
+.k-geo:hover { 
+    background: #2ecc71; 
+    color: white; 
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.5); 
+    transform: translateY(-3px);
+}
+
+/* 2. 歷史與文化：古卷金 (代表歲月) */
+.k-hist { border-color: #f1c40f; color: #f39c12; }
+.k-hist:hover { 
+    background: #f1c40f; 
+    color: white; 
+    box-shadow: 0 5px 15px rgba(241, 196, 15, 0.5); 
+    transform: translateY(-3px);
+}
+
+/* 3. 自然與科學：科技藍 (代表理性) */
+.k-sci { border-color: #0984e3; color: #0984e3; }
+.k-sci:hover { 
+    background: #0984e3; 
+    color: white; 
+    box-shadow: 0 5px 15px rgba(9, 132, 227, 0.5); 
+    transform: translateY(-3px);
+}
+
+/* 4. 生活與常識：暖陽橘 (代表活力) */
+.k-life { border-color: #e17055; color: #e17055; }
+.k-life:hover { 
+    background: #e17055; 
+    color: white; 
+    box-shadow: 0 5px 15px rgba(225, 112, 85, 0.5); 
+    transform: translateY(-3px);
+}
+
+/* 5. 藝術與文學：神秘紫 (代表靈感) */
+.k-art { border-color: #a29bfe; color: #6c5ce7; }
+.k-art:hover { 
+    background: #6c5ce7; 
+    color: white; 
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.5); 
+    transform: translateY(-3px);
+}
